@@ -9,13 +9,19 @@ function App() {
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
-      axios.get(url).then((response) => {
-        SetData(response.data);
-        console.log(response.data);
-      });
+      axios.get(url)
+        .then((response) => {
+          SetData(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error("City search error:", error);
+          alert("The city was not found. Please try again.");
+        });
       setLocation("");
     }
   };
+  
 
   return (
     <div className="app">
