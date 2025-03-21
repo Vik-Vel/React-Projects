@@ -1,15 +1,17 @@
-import React, { use, userState, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function App() {
   const [data, SetData] = useState({});
   const [location, setLocation] = useState("");
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=fcf8a03d511df42ea46e81895017dbb6&units=metric`;
+  const apiKey = "fcf8a03d511df42ea46e81895017dbb6";
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
-      axios.get(url)
+      axios
+        .get(url)
         .then((response) => {
           SetData(response.data);
           console.log(response.data);
@@ -21,7 +23,36 @@ function App() {
       setLocation("");
     }
   };
-  
+
+  const getLocationAndCity = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          const geoUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+          axios
+            .get(geoUrl)
+            .then((response) => {
+              SetData(response.data);
+              console.log("Current location data:", response.data);
+            })
+            .catch((error) => {
+              console.error("Location fetch error:", error);
+              alert("Could not fetch data based on your location.");
+            });
+        },
+        (error) => {
+          console.error("Geolocation error:", error);
+          alert("Please allow location access.");
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by your browser.");
+    }
+  };
 
   return (
     <div className="app">
@@ -32,8 +63,13 @@ function App() {
           onKeyDown={searchLocation}
           placeholder="Enter Location"
           type="text"
+          className="search-input"
         />
+        <button onClick={getLocationAndCity} className="currentLocation"  title="Use current location">
+        𖦏
+        </button>
       </div>
+
       <div className="container">
         <div className="top">
           <div className="location">
@@ -61,7 +97,9 @@ function App() {
               <p>Humidity</p>
             </div>
             <div className="wind">
-              {data.wind ? <p className="bold">{data.wind.speed.toFixed()} MPH</p> : null}
+              {data.wind ? (
+                <p className="bold">{data.wind.speed.toFixed()} MPH</p>
+              ) : null}
               <p>Wind Speed</p>
             </div>
           </div>
