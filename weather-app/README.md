@@ -23,15 +23,18 @@ A simple and modern weather app built with **React**, using the **OpenWeatherMap
 ## 📸 Preview
 
 ### 🌍 Loading Screen
-![Loading Screen](https://i.ibb.co/3ykXXHdd/2025-03-21-182947.png)
+![Loading Screen](public/screenshots/loading.png)
+
+#### 📍 Weather by Current Location - Button 
+![Manchester Weather](public/screenshots/currentLocation.png)
 
 ### 📍 Weather by Location
 
-#### 🌆 Plovdiv
-![Plovdiv Weather](https://i.ibb.co/SXcW1YWX/2025-03-21-182832.png)
+#### 🌆 Choose City - Manchester
+![Plovdiv Weather](public/screenshots/chooseCity.png)
 
 #### 🌆 Manchester
-![Manchester Weather](https://i.ibb.co/PssS8xkM/2025-03-21-183104.png)
+![Manchester Weather](public/screenshots/choosedCity.png)
 
 
 ## ✅ Future Improvements
