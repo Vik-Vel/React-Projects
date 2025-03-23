@@ -13,4 +13,5 @@ Welcome to my **React Projects** repository!
 ```plaintext
 react-projects/
 ├── Hangman   // A basic React game
+├── weather-app   // A Weather React Api 
 └── README.md    // You're here!
