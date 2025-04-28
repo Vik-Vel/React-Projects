@@ -1,7 +1,7 @@
-export function Button() {
-  const ButtonTitle = () => {
-    const availableMoney = 1001;
-    const text =
+export function Button(): JSX.Element {
+  const ButtonTitle: () => JSX.Element = () => {
+    const availableMoney: number = 1001;
+    const text: string =
       availableMoney > 1000 ? "more than 1000" : "less or equal than 1000";
 
     return <h3>{text}</h3>;
