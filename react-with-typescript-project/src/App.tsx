@@ -1,11 +1,9 @@
-import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { Button } from "./components/Button";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <div>
@@ -17,10 +15,11 @@ function App() {
         </a>
       </div>
       <h1>My React App</h1>
+      <Button />
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <Button />
+        <Button />
+        <Button />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -28,6 +27,10 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div>
+        <p>Profile</p>
+        <Button />
+      </div>
     </>
   );
 }
